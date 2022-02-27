@@ -1,0 +1,125 @@
+/* Meier-Digital simple CSS and JS carousel */
+.md_carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 10px #0003);
+    font-family: sans-serif;
+    box-sizing: border-box;
+    scrollbar-color: transparent transparent; /* thumb and track color */
+    scrollbar-width: 0;
+}
+
+.md_carouselViewport {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    display: flex;
+    overflow-x: hidden;
+    counter-reset: item; /* For demo purpose only - remove in production */
+}
+
+.md_carouselSlide {
+    position: relative;
+    left: 0%;
+    flex: 0 0 100%;
+    background-color: #b4aaaa;
+    background-color: rgba(180,170,170,1.00);;
+    counter-increment: item;  /* For demo purpose only - remove in production */
+    transition: left 4s ease-in-out;
+}
+/* For demo purpose only - remove in production */
+.md_carouselSlide:nth-child(even) {
+    background-color: rgba(114,110,110,1.00);
+}
+/* For demo purpose only - remove in production */
+.md_carouselSlide:before {
+    content: "Slide " counter(item);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-40%,70px);
+    color: #fff;
+    font-size: 2em;
+}
+
+.md_carouselNav {
+    position: absolute;
+    right: 0;
+    bottom: 0.2rem;
+    left: 0;
+    text-align: center;
+}
+.md_carouselNav:first-child { display: inline-block; }
+.md_carouselNavButton {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.15rem;
+    background-color: #333;    
+    background-color: rgba(51,51,51,0.50);
+    background-clip: border-box;
+    border: 0 solid transparent;
+    outline: 0.2rem solid transparent;
+    border-radius: 50%;
+    font-size: 0;
+    transition: transform 0.1s, outline 0.3s, background 0.3s;
+    cursor: pointer;
+}
+.md_carouselNavButton:hover,
+.md_carouselNavButton:focus {
+    outline-width: 0.2rem;
+    outline-style: solid;
+    outline-color: #f8bf3f;
+    outline-color: rgba(248, 191, 63,0.9);
+}
+
+.md_carouselPrevious { left: 0; }
+.md_carouselNext { right: 0; }
+.md_carouselPrevious,
+.md_carouselNext {
+    position: absolute;
+    top: 0;
+    width: 4rem;
+    height: 100%;
+    border: 0;
+    content: '';
+    z-index: 1;    
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 4rem;
+    text-align: center;
+    opacity: 0.5;
+    cursor: pointer;
+    background-color: #333;
+    background-color: rgba(51,51,51,0.50);
+    background-size: 2rem 2rem;
+    background-repeat: no-repeat;
+    background-position: center center;   
+    transition: opacity 0.5s ease, border 0.5s ease;
+}
+.md_carouselPrevious:hover,
+.md_carouselNext:hover,
+.md_carouselPrevious:focus,
+.md_carouselNext:focus {
+    opacity:1;
+    border-color: #f8bf3f;
+    border-color: rgba(248, 191, 63,0.9);
+}
+.md_carouselPrevious {
+    border-right: 0.2rem solid transparent;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23f8bf3f' /%3E%3C/svg%3E");
+}
+.md_carouselNext {
+    border-left: 0.2rem solid transparent;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23f8bf3f' /%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+    .md_carouselSlide { transition: left 0s; }
+}
