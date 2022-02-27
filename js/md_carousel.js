@@ -4,7 +4,7 @@ var currentCarouselPositions = []; // stores the position index of all sliders
 function SetupCarousels(transitionDuration, displayDuration) {
     Array.from(allCarousels).forEach(carousel => {
         let currentCarouselIndex = currentCarouselPositions.length;
-        currentCarouselPositions.push(0); // sets the default current position to 0
+        currentCarouselPositions.push(0); // sets the default current position to 0        
         let viewport = carousel.getElementsByClassName('md_carouselViewport')[0];
         // Add mouse enter event to stop autoplay while mouse is hovering viewport
         carousel.addEventListener('mouseenter', function (event) { clearTimeout(event.target.dataset.timeoutid); });
@@ -32,6 +32,8 @@ function SetupCarousels(transitionDuration, displayDuration) {
             if (currentPosition >= slides.length - 1) { TransitionToSlide(currentCarouselIndex, 0); }
             else { TransitionToSlide(currentCarouselIndex, currentPosition + 1); }
         });
+        // color first button
+        allCarousels[currentCarouselIndex].getElementsByClassName('md_carouselNav')[0].getElementsByClassName('md_carouselNavButton')[0].style.backgroundColor = 'rgba(248, 191, 63, 0.50)';
         // Adjust transition speed
         for(let i = 0; i < slides.length; i++) { slides[i].style.transition = "left "+transitionDuration+"ms ease-in-out"; }
         // Set display duration/timeout and start autoplay
